@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MovieApiServiceService } from 'src/app/service/movie-api-service.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  constructor(private service: MovieApiServiceService) {}
+
+  bannerResult: any = [];
+
+  ngOnInit(): void {
+    this.bannerData();
+  }
+
+  //Bannerdata
+  bannerData() {
+    this.service.bannerApiData().subscribe((res) => {
+      this.bannerResult = res.results;
+      console.log(this.bannerResult);
+    })
+  }
 
 }
