@@ -11,16 +11,24 @@ export class HomeComponent {
   constructor(private service: MovieApiServiceService) {}
 
   bannerResult: any = [];
+  trendingMovieResult: any = [];
 
   ngOnInit(): void {
     this.bannerData();
+    this.trendingData();
   }
 
   //Bannerdata
   bannerData() {
     this.service.bannerApiData().subscribe((res) => {
       this.bannerResult = res.results;
-      console.log(this.bannerResult);
+    })
+  }
+
+  // TrendingData
+  trendingData() {
+    this.service.TrendingMovieApiData().subscribe((res) => {
+      this.trendingMovieResult = res.results;
     })
   }
 
